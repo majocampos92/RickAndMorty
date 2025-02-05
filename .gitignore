@@ -1,0 +1,33 @@
+# Xcode
+#
+# User-specific files
+.idea/
+xcuserdata/
+
+# Xcode's build folder
+build/
+DerivedData/
+
+# Swift Package Manager
+.swiftpm/
+
+# CocoaPods
+Pods/
+
+# Carthage
+Carthage/
+
+# Acciones de Xcode
+*.hmap
+
+# Archive files
+*.xcarchive
+
+# xcconfig files
+*.xcconfig
+
+# User-specific configuration
+*.swp
+*.swo
+
+.DS_Store
