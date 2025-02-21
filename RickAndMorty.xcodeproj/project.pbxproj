@@ -13,6 +13,7 @@
 		AE33B1B92D51DAAF00B4908F /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = AE33B1B82D51DAAF00B4908F /* RxMoya */; };
 		AEC1DD592D52E36200A62720 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = AEC1DD582D52E36200A62720 /* Swinject */; };
 		AEC1DD642D52E3F300A62720 /* SwinjectAutoregistration in Frameworks */ = {isa = PBXBuildFile; productRef = AEC1DD632D52E3F300A62720 /* SwinjectAutoregistration */; };
+		AEC509492D6927FA0052C8AF /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = AEC509482D6927FA0052C8AF /* Kingfisher */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 			files = (
 				AEC1DD642D52E3F300A62720 /* SwinjectAutoregistration in Frameworks */,
 				AE33B1B52D51DAAF00B4908F /* Moya in Frameworks */,
+				AEC509492D6927FA0052C8AF /* Kingfisher in Frameworks */,
 				AEC1DD592D52E36200A62720 /* Swinject in Frameworks */,
 				AE33B1B32D51DAAF00B4908F /* CombineMoya in Frameworks */,
 				AE33B1B92D51DAAF00B4908F /* RxMoya in Frameworks */,
@@ -93,6 +95,7 @@
 				AE7EABBB2D4F31AE001377DC /* RickAndMorty */,
 				AE7EABCC2D4F31B1001377DC /* RickAndMortyTests */,
 				AE7EABD62D4F31B1001377DC /* RickAndMortyUITests */,
+				AEC509472D6927FA0052C8AF /* Frameworks */,
 				AE7EABBA2D4F31AE001377DC /* Products */,
 			);
 			sourceTree = "<group>";
@@ -105,6 +108,13 @@
 				AE7EABD32D4F31B1001377DC /* RickAndMortyUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		AEC509472D6927FA0052C8AF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -133,6 +143,7 @@
 				AE33B1B82D51DAAF00B4908F /* RxMoya */,
 				AEC1DD582D52E36200A62720 /* Swinject */,
 				AEC1DD632D52E3F300A62720 /* SwinjectAutoregistration */,
+				AEC509482D6927FA0052C8AF /* Kingfisher */,
 			);
 			productName = RickAndMorty;
 			productReference = AE7EABB92D4F31AE001377DC /* RickAndMorty.app */;
@@ -220,6 +231,7 @@
 				AE33B1B12D51DAAF00B4908F /* XCRemoteSwiftPackageReference "Moya" */,
 				AEC1DD572D52E36200A62720 /* XCRemoteSwiftPackageReference "Swinject" */,
 				AEC1DD622D52E3F300A62720 /* XCRemoteSwiftPackageReference "SwinjectAutoregistration" */,
+				AEC509462D69276E0052C8AF /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = AE7EABBA2D4F31AE001377DC /* Products */;
@@ -620,6 +632,14 @@
 				minimumVersion = 2.9.1;
 			};
 		};
+		AEC509462D69276E0052C8AF /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.2.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -652,6 +672,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = AEC1DD622D52E3F300A62720 /* XCRemoteSwiftPackageReference "SwinjectAutoregistration" */;
 			productName = SwinjectAutoregistration;
+		};
+		AEC509482D6927FA0052C8AF /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AEC509462D69276E0052C8AF /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
