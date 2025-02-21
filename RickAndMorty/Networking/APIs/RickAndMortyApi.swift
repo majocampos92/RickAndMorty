@@ -4,10 +4,13 @@
 //
 //  Created by Maria Campos on 4/2/25.
 //
+
 import Moya
 import Foundation
 
-enum RickAndMortyApi {}
+enum RickAndMortyApi {
+    case getAllCharacters
+}
 
 // MARK: Extensions
 extension RickAndMortyApi: TargetType {
@@ -20,15 +23,24 @@ extension RickAndMortyApi: TargetType {
     }
     
     var path: String {
-        "/"
+        switch self {
+        case .getAllCharacters:
+            return Endpoints.getAllCharacters
+        }
     }
     
     var method: Moya.Method {
-        return .get
+        switch self {
+        case .getAllCharacters:
+            return .get
+        }
     }
 
     var task: Task {
-        return .requestPlain
+        switch self {
+        case .getAllCharacters:
+            return .requestPlain
+        }
     }
     
     var parameterEncoding: ParameterEncoding {

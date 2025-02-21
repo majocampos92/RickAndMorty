@@ -4,6 +4,7 @@
 //
 //  Created by Maria Campos on 4/2/25.
 //
+
 import Foundation
 import Swinject
 import SwinjectAutoregistration
@@ -16,6 +17,13 @@ public struct ServiceAssembly: Assembly {
         container.register(MoyaProvider<RickAndMortyApi>.self) { _ in
             MoyaProvider<RickAndMortyApi>()
         }
-        container.autoregister(RickAndMortyServiceType.self, initializer: RickAndMortyNetworkService.init)
+        
+        container.register(CharacterRepository.self) { resolver in
+            CharacterRepositoryImpl(apiService: resolver.resolve(MoyaProvider<RickAndMortyApi>.self)!)
+        }
+        
+        container.register(CharactersUseCase.self) { resolver in
+            CharactersUseCaseImpl(repository: resolver.resolve(CharacterRepository.self)!)
+        }
     }
 }

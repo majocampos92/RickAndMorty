@@ -4,27 +4,24 @@
 //
 //  Created by Maria Campos on 4/2/25.
 //
+
 import Foundation
 import Swinject
 
 // MARK: - Dependency injection
 enum Injector {
-    static let current: Assembler = {
+    static let shared: Assembler = {
         let container = Container()
-        let assambler = Assembler(
-            [
-                ServiceAssembly()
-            ],
-            container: container
-        )
-        return assambler
+        let assembler = Assembler([
+            ServiceAssembly(),
+        ], container: container)
+        return assembler
     }()
-}
 
-// MARK: - Extensions
-extension Injector {
     static func resolve<Service>(_ serviceType: Service.Type) -> Service {
-        let service: Service = current.resolver.resolve(serviceType).unwrap()
+        guard let service = shared.resolver.resolve(serviceType) else {
+            fatalError("❌ Could not be resolved \(serviceType)")
+        }
         return service
     }
 }
