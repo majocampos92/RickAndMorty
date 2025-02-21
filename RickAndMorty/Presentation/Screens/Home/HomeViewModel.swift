@@ -39,7 +39,7 @@ final class HomeViewModel: ObservableObject {
                             id: item.id ?? 0,
                             name: item.name ?? "Unknown",
                             species: item.species ?? "Unknown",
-                            image: item.image
+                            image: item.image ?? "Unknown"
                         )
                     )
                 }
