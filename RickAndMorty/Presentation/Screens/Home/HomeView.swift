@@ -16,7 +16,7 @@ struct HomeView: View {
                 VStack(alignment: .leading) {
                     Text(character.name)
                         .font(.headline)
-                    Text(character.status)
+                    Text(character.species)
                         .font(.subheadline)
                 }
             }

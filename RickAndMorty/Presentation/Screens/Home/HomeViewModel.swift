@@ -10,7 +10,7 @@ import Combine
 
 final class HomeViewModel: ObservableObject {
     // MARK: - Properties
-    @Published var characters: [Character] = []
+    @Published var characters: [CharacterDTO] = []
     @Published var error: Error?
 
     private let charactersUseCase: CharactersUseCase
@@ -33,7 +33,16 @@ final class HomeViewModel: ObservableObject {
                     print("✅ Finish get all characters")
                 }
             }, receiveValue: { response in
-                self.characters = response
+                response.forEach { item in
+                    self.characters.append(
+                        CharacterDTO(
+                            id: item.id ?? 0,
+                            name: item.name ?? "Unknown",
+                            species: item.species ?? "Unknown",
+                            image: item.image
+                        )
+                    )
+                }
             })
             .store(in: &cancellables)
     }
