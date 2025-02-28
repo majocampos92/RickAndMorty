@@ -18,12 +18,21 @@ public struct ServiceAssembly: Assembly {
             MoyaProvider<RickAndMortyApi>()
         }
         
+        // MARK: Repositories
         container.register(CharacterRepository.self) { resolver in
             CharacterRepositoryImpl(apiService: resolver.resolve(MoyaProvider<RickAndMortyApi>.self)!)
         }
+        container.register(LocationRepository.self) { resolver in
+            LocationRepositoryImpl(apiService: resolver.resolve(MoyaProvider<RickAndMortyApi>.self)!)
+        }
         
+        // MARK: Use cases
         container.register(CharactersUseCase.self) { resolver in
             CharactersUseCaseImpl(repository: resolver.resolve(CharacterRepository.self)!)
+        }
+        
+        container.register(LocationUseCase.self) { resolver in
+            LocationUseCaseImpl(repository: resolver.resolve(LocationRepository.self)!)
         }
     }
 }

@@ -28,7 +28,7 @@ struct Character: Codable {
     let species: String?
     let type: String?
     let gender: String?
-    let origin, location: Location?
+    let origin, location: CharacterLocation?
     let image: String?
     let episode: [String]?
     let url: String?
@@ -36,7 +36,7 @@ struct Character: Codable {
 }
 
 // MARK: - Location
-struct Location: Codable {
+struct CharacterLocation: Codable {
     let name: String?
     let url: String?
 }

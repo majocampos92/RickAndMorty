@@ -11,16 +11,25 @@ import Combine
 final class HomeViewModel: ObservableObject {
     // MARK: - Properties
     @Published var characters: [CharacterDTO] = []
+    @Published var locations: [LocationDTO] = []
     @Published var error: Error?
 
+    // MARK: Use cases
     private let charactersUseCase: CharactersUseCase
+    private let locationsUseCase: LocationUseCase
+    
     private var cancellables = Set<AnyCancellable>()
 
     // MARK: - Initialization
-    init(charactersUseCase: CharactersUseCase) {
+    init(
+        charactersUseCase: CharactersUseCase,
+        locationUseCase: LocationUseCase
+    ) {
         self.charactersUseCase = charactersUseCase
+        self.locationsUseCase = locationUseCase
     }
     
+    // MARK: Fetch all Characters
     func fecthCharacters() {
         charactersUseCase.getAllCharacters()
             .receive(on: DispatchQueue.main)
@@ -46,11 +55,40 @@ final class HomeViewModel: ObservableObject {
             })
             .store(in: &cancellables)
     }
+    
+    // MARK: Fetch all Locations
+    func fetchLocations() {
+        locationsUseCase.getAllLocations()
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .finished:
+                    print("✅ Finish get all locations")
+                case .failure(let failure):
+                    self.error = failure
+                    print("❌ Error in get all locations \(failure)")
+                }
+            }, receiveValue: { response in
+                response.forEach { item in
+                    self.locations.append(
+                        LocationDTO(
+                            id: item.id ?? 0,
+                            name: item.name ?? "Unknown",
+                            type: item.type ?? "Unknown"
+                        )
+                    )
+                }
+            })
+            .store(in: &cancellables)
+    }
 }
 
 // MARK: - Extensions
 extension HomeViewModel {
     static func make() -> HomeViewModel {
-        HomeViewModel(charactersUseCase: Injector.resolve(CharactersUseCase.self))
+        HomeViewModel(
+            charactersUseCase: Injector.resolve(CharactersUseCase.self),
+            locationUseCase: Injector.resolve(LocationUseCase.self)
+        )
     }
 }

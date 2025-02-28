@@ -9,4 +9,5 @@ import Foundation
 
 enum Endpoints {
     static let getAllCharacters = "/character"
+    static let getLocations = "/location"
 }

@@ -10,6 +10,7 @@ import Foundation
 
 enum RickAndMortyApi {
     case getAllCharacters
+    case getAllLocations
 }
 
 // MARK: Extensions
@@ -26,6 +27,8 @@ extension RickAndMortyApi: TargetType {
         switch self {
         case .getAllCharacters:
             return Endpoints.getAllCharacters
+        case .getAllLocations:
+            return Endpoints.getLocations
         }
     }
     
@@ -33,12 +36,16 @@ extension RickAndMortyApi: TargetType {
         switch self {
         case .getAllCharacters:
             return .get
+        case .getAllLocations:
+            return .get
         }
     }
 
     var task: Task {
         switch self {
         case .getAllCharacters:
+            return .requestPlain
+        case .getAllLocations:
             return .requestPlain
         }
     }
