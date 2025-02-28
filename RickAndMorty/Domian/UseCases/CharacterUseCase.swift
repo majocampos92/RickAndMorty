@@ -11,11 +11,11 @@ import Combine
 import Foundation
 
 // MARK: - Protocols
-protocol CharactersUseCase {
+protocol CharacterUseCase {
     func getAllCharacters() -> AnyPublisher<[Character], Error>
 }
 
-struct CharactersUseCaseImpl: CharactersUseCase {
+struct CharactersUseCaseImpl: CharacterUseCase {
     private let repository: CharacterRepository
 
     init(repository: CharacterRepository) {

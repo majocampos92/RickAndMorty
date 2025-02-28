@@ -27,7 +27,7 @@ public struct ServiceAssembly: Assembly {
         }
         
         // MARK: Use cases
-        container.register(CharactersUseCase.self) { resolver in
+        container.register(CharacterUseCase.self) { resolver in
             CharactersUseCaseImpl(repository: resolver.resolve(CharacterRepository.self)!)
         }
         

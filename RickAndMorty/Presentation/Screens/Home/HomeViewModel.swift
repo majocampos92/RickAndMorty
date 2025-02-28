@@ -15,14 +15,14 @@ final class HomeViewModel: ObservableObject {
     @Published var error: Error?
 
     // MARK: Use cases
-    private let charactersUseCase: CharactersUseCase
+    private let charactersUseCase: CharacterUseCase
     private let locationsUseCase: LocationUseCase
     
     private var cancellables = Set<AnyCancellable>()
 
     // MARK: - Initialization
     init(
-        charactersUseCase: CharactersUseCase,
+        charactersUseCase: CharacterUseCase,
         locationUseCase: LocationUseCase
     ) {
         self.charactersUseCase = charactersUseCase
@@ -87,7 +87,7 @@ final class HomeViewModel: ObservableObject {
 extension HomeViewModel {
     static func make() -> HomeViewModel {
         HomeViewModel(
-            charactersUseCase: Injector.resolve(CharactersUseCase.self),
+            charactersUseCase: Injector.resolve(CharacterUseCase.self),
             locationUseCase: Injector.resolve(LocationUseCase.self)
         )
     }
