@@ -25,6 +25,9 @@ public struct ServiceAssembly: Assembly {
         container.register(LocationRepository.self) { resolver in
             LocationRepositoryImpl(apiService: resolver.resolve(MoyaProvider<RickAndMortyApi>.self)!)
         }
+        container.register(EpisodeRepository.self) { resolver in
+            EpisodeRepositoryImpl(apiService: resolver.resolve(MoyaProvider<RickAndMortyApi>.self)!)
+        }
         
         // MARK: Use cases
         container.register(CharacterUseCase.self) { resolver in
@@ -33,6 +36,9 @@ public struct ServiceAssembly: Assembly {
         
         container.register(LocationUseCase.self) { resolver in
             LocationUseCaseImpl(repository: resolver.resolve(LocationRepository.self)!)
+        }
+        container.register(EpisodeUseCase.self) { resolver in
+            EpisodeUseCaseImpl(repository: resolver.resolve(EpisodeRepository.self)!)
         }
     }
 }

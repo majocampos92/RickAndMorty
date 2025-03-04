@@ -62,6 +62,7 @@ struct HomeView: View {
                             .onAppear {
                                 viewModel.fecthCharacters()
                                 viewModel.fetchLocations()
+                                viewModel.fetchEpisodes()
                             }
                         }
                     }

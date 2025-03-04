@@ -11,6 +11,7 @@ import Foundation
 enum RickAndMortyApi {
     case getAllCharacters
     case getAllLocations
+    case getAllEpisodes
 }
 
 // MARK: Extensions
@@ -29,6 +30,8 @@ extension RickAndMortyApi: TargetType {
             return Endpoints.getAllCharacters
         case .getAllLocations:
             return Endpoints.getLocations
+        case .getAllEpisodes:
+            return Endpoints.getAllEpisodes
         }
     }
     
@@ -38,6 +41,8 @@ extension RickAndMortyApi: TargetType {
             return .get
         case .getAllLocations:
             return .get
+        case .getAllEpisodes:
+            return .get
         }
     }
 
@@ -46,6 +51,8 @@ extension RickAndMortyApi: TargetType {
         case .getAllCharacters:
             return .requestPlain
         case .getAllLocations:
+            return .requestPlain
+        case .getAllEpisodes:
             return .requestPlain
         }
     }

@@ -12,21 +12,25 @@ final class HomeViewModel: ObservableObject {
     // MARK: - Properties
     @Published var characters: [CharacterDTO] = []
     @Published var locations: [LocationDTO] = []
+    @Published var episodes: [EpisodeDTO] = []
     @Published var error: Error?
 
     // MARK: Use cases
     private let charactersUseCase: CharacterUseCase
     private let locationsUseCase: LocationUseCase
+    private let episodesUseCase: EpisodeUseCase
     
     private var cancellables = Set<AnyCancellable>()
 
     // MARK: - Initialization
     init(
         charactersUseCase: CharacterUseCase,
-        locationUseCase: LocationUseCase
+        locationUseCase: LocationUseCase,
+        episodeUseCase: EpisodeUseCase
     ) {
         self.charactersUseCase = charactersUseCase
         self.locationsUseCase = locationUseCase
+        self.episodesUseCase = episodeUseCase
     }
     
     // MARK: Fetch all Characters
@@ -81,6 +85,33 @@ final class HomeViewModel: ObservableObject {
             })
             .store(in: &cancellables)
     }
+    
+    // MARK: Fetch all Episodes
+    func fetchEpisodes() {
+        episodesUseCase.getAllEpisodes()
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .finished:
+                    print("✅ Finish get all episodes")
+                case .failure(let failure):
+                    self.error = failure
+                    print("❌ Error in get all episodes \(failure)")
+
+                }
+            }, receiveValue: { response in
+                response.forEach { item in
+                    self.episodes.append(
+                        EpisodeDTO(
+                            id: item.id ?? 0,
+                            name: item.name ?? "Unknown",
+                            airDate: item.airDate ??  "Unknown"
+                        )
+                    )
+                }
+            })
+            .store(in: &cancellables)
+    }
 }
 
 // MARK: - Extensions
@@ -88,7 +119,8 @@ extension HomeViewModel {
     static func make() -> HomeViewModel {
         HomeViewModel(
             charactersUseCase: Injector.resolve(CharacterUseCase.self),
-            locationUseCase: Injector.resolve(LocationUseCase.self)
+            locationUseCase: Injector.resolve(LocationUseCase.self),
+            episodeUseCase: Injector.resolve(EpisodeUseCase.self)
         )
     }
 }

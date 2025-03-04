@@ -10,4 +10,5 @@ import Foundation
 enum Endpoints {
     static let getAllCharacters = "/character"
     static let getLocations = "/location"
+    static let getAllEpisodes = "/episode"
 }
