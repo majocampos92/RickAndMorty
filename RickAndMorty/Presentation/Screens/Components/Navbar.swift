@@ -16,13 +16,14 @@ enum NavbarType {
 struct NavbarSelector: View {
     var type: NavbarType
     var size: CGSize
+    var title: String?
     
     var body: some View {
         switch type {
         case .home:
             HomeNavbar(size: size)
         case .list:
-            ListNavbar(size: size)
+            ListNavbar(size: size, title: title ?? "Unknwon")
         }
     }
 }
@@ -54,7 +55,7 @@ struct HomeNavbar: View {
 
 struct ListNavbar: View {
     var size: CGSize
-    var title: String = "none"
+    var title: String
     
     var body: some View {
         VStack {
@@ -83,5 +84,5 @@ struct ListNavbar: View {
 
 #Preview {
     HomeNavbar(size: CGSize(width: 402.0, height: 874.0))
-    ListNavbar(size: CGSize(width: 402.0, height: 874.0))
+    ListNavbar(size: CGSize(width: 402.0, height: 874.0), title: "Unknwon")
 }
