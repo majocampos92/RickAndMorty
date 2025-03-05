@@ -46,7 +46,7 @@ final class HomeViewModel: ObservableObject {
                     print("✅ Finish get all characters")
                 }
             }, receiveValue: { response in
-                response.forEach { item in
+                response.prefix(5).forEach { item in
                     self.characters.append(
                         CharacterDTO(
                             id: item.id ?? 0,
@@ -73,7 +73,7 @@ final class HomeViewModel: ObservableObject {
                     print("❌ Error in get all locations \(failure)")
                 }
             }, receiveValue: { response in
-                response.forEach { item in
+                response.prefix(5).forEach { item in
                     self.locations.append(
                         LocationDTO(
                             id: item.id ?? 0,
@@ -100,7 +100,7 @@ final class HomeViewModel: ObservableObject {
 
                 }
             }, receiveValue: { response in
-                response.forEach { item in
+                response.prefix(5).forEach { item in
                     self.episodes.append(
                         EpisodeDTO(
                             id: item.id ?? 0,
