@@ -14,15 +14,7 @@ struct HomeView: View {
     var body: some View {
         GeometryReader { geometry in
             VStack {
-                VStack {
-                }
-                .frame(
-                    width: geometry.size.width,
-                    height: geometry.size.height * 0.15,
-                    alignment: .top
-                )
-                .background(Color("deep_navy"))
-                .ignoresSafeArea()
+                NavbarSelector(type: .home, size: geometry.size)
                 
                 ScrollView(.vertical, showsIndicators: false){
                     VStack {
