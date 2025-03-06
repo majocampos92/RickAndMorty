@@ -74,11 +74,14 @@ final class HomeViewModel: ObservableObject {
                 }
             }, receiveValue: { response in
                 response.prefix(5).forEach { item in
+                    let locationImage = LocationImageMapper.image(for: item.name ?? "Unknown")
+                    
                     self.locations.append(
                         LocationDTO(
                             id: item.id ?? 0,
                             name: item.name ?? "Unknown",
-                            type: item.type ?? "Unknown"
+                            type: item.type ?? "Unknown",
+                            image: locationImage
                         )
                     )
                 }
