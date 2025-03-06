@@ -103,11 +103,12 @@ final class HomeViewModel: ObservableObject {
 
                 }
             }, receiveValue: { response in
-                response.prefix(5).forEach { item in
+                response.prefix(3).forEach { item in
                     self.episodes.append(
                         EpisodeDTO(
                             id: item.id ?? 0,
                             name: item.name ?? "Unknown",
+                            episode: item.episode ?? "Unknown",
                             airDate: item.airDate ??  "Unknown"
                         )
                     )

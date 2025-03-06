@@ -53,6 +53,27 @@ struct HomeView: View {
                             .padding(.vertical, 10)
                         }
                         
+                        VStack {
+                            ForEach(viewModel.episodes, id: \.id) { episode in
+                                VStack(alignment: .leading) {
+                                    Text("\(episode.name)")
+                                    
+                                    Text("\(episode.episode)")
+                                    
+                                    Text("\(episode.airDate)")
+                                }
+                                .padding()
+                                .frame(
+                                    width: geometry.size.width * 0.95,
+                                    height: geometry.size.height * 0.10,
+                                    alignment: .leading
+                                )
+                                .background(.white)
+                                .cornerRadius(15)
+                                .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 3)
+                            }
+                        }
+                        
                         // MARK: Locations Section
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack {
