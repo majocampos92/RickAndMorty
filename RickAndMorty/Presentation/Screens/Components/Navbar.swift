@@ -46,10 +46,10 @@ struct HomeNavbar: View {
         .padding()
         .frame(
             width: size.width,
-            height: size.height * 0.06,
+            height: size.height * 0.05,
             alignment: .center
         )
-        .background(Color("deep_navy"))
+        .background(.white)
     }
 }
 
@@ -62,13 +62,13 @@ struct ListNavbar: View {
             HStack {
                 Button(action: {}) {
                     Image(systemName: "chevron.left")
-                        .foregroundColor(.white)
+                        .foregroundColor(Color("deep_navy"))
                 }
                 
                 Spacer()
                 
                 Text("\(title)")
-                    .foregroundColor(.white)
+                    .foregroundColor(Color("deep_navy"))
                 
                 Spacer()
             }
@@ -78,7 +78,7 @@ struct ListNavbar: View {
             width: size.width,
             height: size.height * 0.06
         )
-        .background(Color("deep_navy"))
+        .background(.white)
     }
 }
 

@@ -13,105 +13,141 @@ struct HomeView: View {
     
     var body: some View {
         GeometryReader { geometry in
-            VStack {
-                NavbarSelector(type: .home, size: geometry.size)
-                
-                ScrollView(.vertical, showsIndicators: false){
-                    VStack {
-                        //MARK: Characters Section
-                        ScrollView(.horizontal, showsIndicators: false) {
-                            HStack {
-                                ForEach(viewModel.characters, id: \.id) { character in
-                                    VStack(alignment: .leading, spacing: 8) {
-                                        KFImage(URL(string: character.image)!)
-                                            .resizable()
-                                            .scaledToFill()
-                                            .frame(
-                                                width: geometry.size.width * 0.30,
-                                                height: geometry.size.height * 0.15
-                                            )
-                                            .clipped()
-                                        
-                                        VStack(alignment: .leading, spacing: 4) {
-                                            Text(character.name)
-                                            
-                                            Text(character.species)
-                                        }
-                                        .padding()
-                                    }
-                                    .frame(
-                                        width: geometry.size.width * 0.30,
-                                        height: geometry.size.height * 0.25,
-                                        alignment: .leading
-                                    )
-                                    .background(.white)
-                                    .cornerRadius(15)
-                                    .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 3)
-                                }
-                            }
-                            .padding(.horizontal, 10)
-                            .padding(.vertical, 10)
-                        }
+            ZStack(alignment: .bottom) {
+                VStack(alignment: .leading, spacing: .zero) {
+                    
+                    NavbarSelector(type: .home, size: geometry.size)
+                    
+                    ScrollView(.vertical, showsIndicators: false) {
                         
-                        VStack {
-                            ForEach(viewModel.episodes, id: \.id) { episode in
-                                VStack(alignment: .leading) {
-                                    Text("\(episode.name)")
-                                    
-                                    Text("\(episode.episode)")
-                                    
-                                    Text("\(episode.airDate)")
-                                }
-                                .padding()
-                                .frame(
-                                    width: geometry.size.width * 0.95,
-                                    height: geometry.size.height * 0.10,
-                                    alignment: .leading
-                                )
-                                .background(.white)
-                                .cornerRadius(15)
-                                .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 3)
-                            }
-                        }
+                        Banner(size: geometry.size)
                         
-                        // MARK: Locations Section
-                        ScrollView(.horizontal, showsIndicators: false) {
-                            HStack {
-                                ForEach(viewModel.locations, id: \.id) { location in
-                                    VStack(alignment: .leading, spacing: 4) {
-                                        Image("\(location.image.rawValue)")
-                                            .resizable()
-                                            .scaledToFill()
-                                            .frame(
-                                                width: geometry.size.width * 0.45,
-                                                height: geometry.size.height * 0.25
-                                            )
-                                            .clipped()
-                                        
-                                        VStack(alignment: .leading, spacing: 4) {
-                                            
-                                            Text(location.name)
-                                            
-                                            Text(location.type)
+                        VStack(alignment: .leading, spacing: 8.0) {
+                            
+                            //MARK: Characters Section
+                            VStack(alignment: .leading, spacing: 8.0) {
+                                
+                                TitleHomeSection(title: "Characters")
+                                
+                                ScrollView(.horizontal, showsIndicators: false) {
+                                    HStack(alignment: .top, spacing: 16.0) {
+                                        ForEach(viewModel.characters, id: \.id) { character in
+                                            Button(action: {}) {
+                                                VStack(alignment: .center, spacing: 0.0) {
+                                                    KFImage(URL(string: character.image)!)
+                                                        .resizable()
+                                                        .scaledToFill()
+                                                        .frame(
+                                                            width: geometry.size.width * 0.25,
+                                                            height: geometry.size.height * 0.15
+                                                        )
+                                                        .clipShape(Circle())
+                                                    
+                                                    Text(character.name)
+                                                        .lineLimit(nil)
+                                                        .multilineTextAlignment(.center)
+                                                        .fixedSize(horizontal: false, vertical: true)
+                                                        .frame(
+                                                            width: geometry.size.width * 0.25,
+                                                            height: geometry.size.height * 0.05,
+                                                            alignment: .top
+                                                        )
+                                                        .font(.system(size: 16))
+                                                    
+                                                }
+                                            }
                                         }
-                                        .padding()
                                     }
-                                    .frame(
-                                        width: geometry.size.width * 0.45,
-                                        height: geometry.size.height * 0.35,
-                                        alignment: .leading
-                                    )
-                                    .background(.white)
-                                    .cornerRadius(15)
-                                    .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 3)
+                                    .padding(.horizontal, 12.0)
                                 }
+                                .foregroundColor(Color("deep_navy"))
                             }
-                            .padding()
+                            
+                            // MARK: Locations Section
+                            VStack(alignment: .leading, spacing: 8.0) {
+                                
+                                TitleHomeSection(title: "Locations")
+                                
+                                ScrollView(.horizontal, showsIndicators: false) {
+                                    HStack(alignment: .top, spacing: 16.0) {
+                                        ForEach(viewModel.locations, id: \.id) { location in
+                                            Button(action: {}) {
+                                                VStack(alignment: .leading, spacing: 4.0) {
+                                                    Image("\(location.image.rawValue)")
+                                                        .resizable()
+                                                        .scaledToFill()
+                                                        .frame(
+                                                            width: geometry.size.width * 0.50,
+                                                            height: geometry.size.height * 0.20
+                                                        )
+                                                        .clipped()
+                                                    
+                                                    VStack(alignment: .leading, spacing: 4) {
+                                                        
+                                                        Text(location.name)
+                                                        
+                                                        Text(location.type)
+                                                    }
+                                                    .font(.system(size: 16))
+                                                    .padding()
+                                                }
+                                                .frame(
+                                                    width: geometry.size.width * 0.40,
+                                                    height: geometry.size.height * 0.30,
+                                                    alignment: .leading
+                                                )
+                                                .background(.white)
+                                                .cornerRadius(15)
+                                                .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 3)
+                                            }
+                                        }
+                                    }
+                                    .padding(.horizontal, 12.0)
+                                    .padding(.bottom, 8.0)
+                                }
+                                .foregroundColor(Color("deep_navy"))
+                            }
+                            
+                            // MARK: Episodes Section
+                            VStack(alignment: .center, spacing: 8.0) {
+                                
+                                TitleHomeSection(title: "Episodes")
+                                
+                                VStack(alignment: .leading, spacing: 16.0) {
+                                    ForEach(viewModel.episodes, id: \.id) { episode in
+                                        HStack {
+                                            VStack(alignment: .leading) {
+                                                Text("\(episode.name)")
+                                                
+                                                Text("\(episode.episode)")
+                                                
+                                                Text("\(episode.airDate)")
+                                            }
+                                            .font(.system(size: 16))
+                                            .padding()
+                                            .frame(
+                                                width: geometry.size.width * 0.95,
+                                                height: geometry.size.height * 0.10,
+                                                alignment: .leading
+                                            )
+                                            .background(.white)
+                                            .cornerRadius(15)
+                                            .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 3)
+                                        }
+                                    }
+                                }
+                                .foregroundColor(Color("deep_navy"))
+                            }
+                            .padding(.bottom, 84)
                         }
                     }
                 }
+                
+                // MARK: TAB BAR FLOTANTE
+                TabBar(size: geometry.size)
             }
         }
+        .background(.white)
         .onAppear {
             viewModel.fecthCharacters()
             viewModel.fetchLocations()

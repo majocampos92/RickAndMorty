@@ -15,7 +15,7 @@ struct TitleHomeSection: View {
         HStack(alignment: .bottom) {
             Text("\(title)")
                 .fontWeight(.semibold)
-                .font(.title)
+                .font(.system(size: 28))
             
             Spacer()
             
@@ -23,7 +23,7 @@ struct TitleHomeSection: View {
                 HStack(alignment: .center, spacing: 2.0) {
                     Text("See All")
                         .fontWeight(.regular)
-                        .font(.footnote)
+                        .font(.system(size: 12))
                     
                     Image(systemName: "chevron.right")
                         .font(.system(size: 10))
