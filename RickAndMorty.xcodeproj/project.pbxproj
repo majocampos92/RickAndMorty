@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AE328B012D7FC2F200A1C23D /* FlowStacks in Frameworks */ = {isa = PBXBuildFile; productRef = AE328B002D7FC2F200A1C23D /* FlowStacks */; };
 		AE33B1B32D51DAAF00B4908F /* CombineMoya in Frameworks */ = {isa = PBXBuildFile; productRef = AE33B1B22D51DAAF00B4908F /* CombineMoya */; };
 		AE33B1B52D51DAAF00B4908F /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = AE33B1B42D51DAAF00B4908F /* Moya */; };
 		AE33B1B72D51DAAF00B4908F /* ReactiveMoya in Frameworks */ = {isa = PBXBuildFile; productRef = AE33B1B62D51DAAF00B4908F /* ReactiveMoya */; };
@@ -65,6 +66,7 @@
 				AEC1DD642D52E3F300A62720 /* SwinjectAutoregistration in Frameworks */,
 				AE33B1B52D51DAAF00B4908F /* Moya in Frameworks */,
 				AEC509492D6927FA0052C8AF /* Kingfisher in Frameworks */,
+				AE328B012D7FC2F200A1C23D /* FlowStacks in Frameworks */,
 				AEC1DD592D52E36200A62720 /* Swinject in Frameworks */,
 				AE33B1B32D51DAAF00B4908F /* CombineMoya in Frameworks */,
 				AE33B1B92D51DAAF00B4908F /* RxMoya in Frameworks */,
@@ -144,6 +146,7 @@
 				AEC1DD582D52E36200A62720 /* Swinject */,
 				AEC1DD632D52E3F300A62720 /* SwinjectAutoregistration */,
 				AEC509482D6927FA0052C8AF /* Kingfisher */,
+				AE328B002D7FC2F200A1C23D /* FlowStacks */,
 			);
 			productName = RickAndMorty;
 			productReference = AE7EABB92D4F31AE001377DC /* RickAndMorty.app */;
@@ -232,6 +235,7 @@
 				AEC1DD572D52E36200A62720 /* XCRemoteSwiftPackageReference "Swinject" */,
 				AEC1DD622D52E3F300A62720 /* XCRemoteSwiftPackageReference "SwinjectAutoregistration" */,
 				AEC509462D69276E0052C8AF /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				AE328AFF2D7FC2F200A1C23D /* XCRemoteSwiftPackageReference "FlowStacks" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = AE7EABBA2D4F31AE001377DC /* Products */;
@@ -618,6 +622,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		AE328AFF2D7FC2F200A1C23D /* XCRemoteSwiftPackageReference "FlowStacks" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/johnpatrickmorgan/FlowStacks.git";
+			requirement = {
+				kind = exactVersion;
+				version = 0.6.0;
+			};
+		};
 		AE33B1B12D51DAAF00B4908F /* XCRemoteSwiftPackageReference "Moya" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Moya/Moya";
@@ -653,6 +665,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		AE328B002D7FC2F200A1C23D /* FlowStacks */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AE328AFF2D7FC2F200A1C23D /* XCRemoteSwiftPackageReference "FlowStacks" */;
+			productName = FlowStacks;
+		};
 		AE33B1B22D51DAAF00B4908F /* CombineMoya */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = AE33B1B12D51DAAF00B4908F /* XCRemoteSwiftPackageReference "Moya" */;
