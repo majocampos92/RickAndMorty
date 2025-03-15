@@ -6,8 +6,11 @@
 //
 
 import SwiftUI
+import FlowStacks
 
 struct TabBar: View {
+    @Binding var routes: [Route<Screen>]
+    
     let size: CGSize
     
     var body: some View {
@@ -25,7 +28,9 @@ struct TabBar: View {
                 }
             }
             
-            Button(action: {}) {
+            Button(action: {
+                routes.append(.push(.characters))
+            }) {
                 VStack {
                     Image("person_icon")
                         .resizable()
@@ -74,5 +79,5 @@ struct TabBar: View {
 }
 
 #Preview {
-    TabBar(size: CGSize(width: 402.0, height: 874.0))
+    TabBar(routes: .constant([.root(.characters)]), size: CGSize(width: 402.0, height: 874.0))
 }

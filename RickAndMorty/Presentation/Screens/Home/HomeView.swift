@@ -7,9 +7,11 @@
 
 import SwiftUI
 import Kingfisher
+import FlowStacks
 
 struct HomeView: View {
     @StateObject var viewModel: HomeViewModel = .make()
+    @Binding var routes: [Route<Screen>]
     
     var body: some View {
         GeometryReader { geometry in
@@ -144,7 +146,7 @@ struct HomeView: View {
                 }
                 
                 // MARK: TAB BAR FLOTANTE
-                TabBar(size: geometry.size)
+                TabBar(routes: $routes, size: geometry.size)
             }
         }
         .background(.white)
@@ -157,5 +159,5 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView()
+    HomeView(routes: .constant([.root(.characters)]))
 }
