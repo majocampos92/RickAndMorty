@@ -151,9 +151,7 @@ struct HomeView: View {
         }
         .background(.white)
         .onAppear {
-            viewModel.fecthCharacters()
-            viewModel.fetchLocations()
-            viewModel.fetchEpisodes()
+            viewModel.loadDataIfNeeded()
         }
     }
 }

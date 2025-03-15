@@ -13,6 +13,7 @@ final class HomeViewModel: ObservableObject {
     @Published var characters: [CharacterDTO] = []
     @Published var locations: [LocationDTO] = []
     @Published var episodes: [EpisodeDTO] = []
+    @Published var dataLoaded = false
     @Published var error: Error?
 
     // MARK: Use cases
@@ -115,6 +116,15 @@ final class HomeViewModel: ObservableObject {
                 }
             })
             .store(in: &cancellables)
+    }
+    
+    func loadDataIfNeeded() {
+        if !dataLoaded {
+            fecthCharacters()
+            fetchLocations()
+            fetchEpisodes()
+            dataLoaded = true
+        }
     }
 }
 
