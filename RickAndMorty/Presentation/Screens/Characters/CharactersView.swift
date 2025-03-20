@@ -6,14 +6,19 @@
 //
 
 import SwiftUI
+import FlowStacks
 
 struct CharactersView: View {
-    @Environment(\.presentationMode) var presentationMode
+    @Binding var routes: [Route<Screen>]
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         VStack {
             Text("Hello world")
         }
-        .navigationTitle("Characters")
     }
+}
+
+#Preview {
+    CharactersView(routes: .constant([.root(.characters)]))
 }

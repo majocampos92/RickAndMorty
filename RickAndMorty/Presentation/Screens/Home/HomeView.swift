@@ -18,7 +18,7 @@ struct HomeView: View {
             ZStack(alignment: .bottom) {
                 VStack(alignment: .leading, spacing: .zero) {
                     
-                    NavbarSelector(type: .home, size: geometry.size)
+                    NavbarSelector(type: .home, size: geometry.size, navigation: {})
                     
                     ScrollView(.vertical, showsIndicators: false) {
                         
@@ -29,7 +29,9 @@ struct HomeView: View {
                             //MARK: Characters Section
                             VStack(alignment: .leading, spacing: 8.0) {
                                 
-                                TitleHomeSection(title: "Characters")
+                                TitleHomeSection(title: "Characters") {
+                                    routes.append(.push(.characters))
+                                }
                                 
                                 ScrollView(.horizontal, showsIndicators: false) {
                                     HStack(alignment: .top, spacing: 16.0) {
@@ -45,7 +47,7 @@ struct HomeView: View {
                             // MARK: Locations Section
                             VStack(alignment: .leading, spacing: 8.0) {
                                 
-                                TitleHomeSection(title: "Locations")
+                                TitleHomeSection(title: "Locations", navigation: {})
                                 
                                 ScrollView(.horizontal, showsIndicators: false) {
                                     HStack(alignment: .top, spacing: 16.0) {
@@ -90,7 +92,7 @@ struct HomeView: View {
                             // MARK: Episodes Section
                             VStack(alignment: .center, spacing: 8.0) {
                                 
-                                TitleHomeSection(title: "Episodes")
+                                TitleHomeSection(title: "Episodes", navigation: {})
                                 
                                 VStack(alignment: .leading, spacing: 16.0) {
                                     ForEach(viewModel.episodes, id: \.id) { episode in

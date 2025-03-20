@@ -18,7 +18,7 @@ struct AppCoordinator: View {
                 .flowDestination(for: Screen.self) { screen in
                     switch screen {
                     case .characters:
-                        CharactersView()
+                        CharactersView(routes: $routes)
                     }
                 }
         }

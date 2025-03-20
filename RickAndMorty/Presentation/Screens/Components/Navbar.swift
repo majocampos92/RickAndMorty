@@ -17,19 +17,21 @@ struct NavbarSelector: View {
     var type: NavbarType
     var size: CGSize
     var title: String?
+    let navigation: () -> Void
     
     var body: some View {
         switch type {
         case .home:
-            HomeNavbar(size: size)
+            HomeNavbar(size: size, navigation: navigation)
         case .list:
-            ListNavbar(size: size, title: title ?? "Unknwon")
+            ListNavbar(size: size, title: title ?? "Unknwon", navigation: navigation)
         }
     }
 }
 
 struct HomeNavbar: View {
     var size: CGSize
+    let navigation: () -> Void
     
     var body: some View {
         HStack {
@@ -56,11 +58,14 @@ struct HomeNavbar: View {
 struct ListNavbar: View {
     var size: CGSize
     var title: String
+    let navigation: () -> Void
     
     var body: some View {
         VStack {
             HStack {
-                Button(action: {}) {
+                Button(action: {
+                    navigation()
+                }) {
                     Image(systemName: "chevron.left")
                         .foregroundColor(Color("deep_navy"))
                 }
@@ -83,6 +88,6 @@ struct ListNavbar: View {
 }
 
 #Preview {
-    HomeNavbar(size: CGSize(width: 402.0, height: 874.0))
-    ListNavbar(size: CGSize(width: 402.0, height: 874.0), title: "Unknwon")
+    HomeNavbar(size: CGSize(width: 402.0, height: 874.0), navigation: {})
+    ListNavbar(size: CGSize(width: 402.0, height: 874.0), title: "Unknwon", navigation: {})
 }

@@ -10,6 +10,7 @@ import SwiftUI
 // TODO: add navigation
 struct TitleHomeSection: View {
     let title: String
+    let navigation: () -> Void
     
     var body: some View {
         HStack(alignment: .bottom) {
@@ -19,7 +20,9 @@ struct TitleHomeSection: View {
             
             Spacer()
             
-            Button(action: {}) {
+            Button(action: {
+                navigation()
+            }) {
                 HStack(alignment: .center, spacing: 2.0) {
                     Text("See All")
                         .fontWeight(.regular)
@@ -36,5 +39,5 @@ struct TitleHomeSection: View {
 }
 
 #Preview {
-    TitleHomeSection(title: "Unknown")
+    TitleHomeSection(title: "Unknown", navigation: {})
 }
