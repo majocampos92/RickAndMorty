@@ -31,3 +31,5 @@ Carthage/
 *.swo
 
 .DS_Store
+
+*.swift~
