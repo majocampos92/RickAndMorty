@@ -34,30 +34,7 @@ struct HomeView: View {
                                 ScrollView(.horizontal, showsIndicators: false) {
                                     HStack(alignment: .top, spacing: 16.0) {
                                         ForEach(viewModel.characters, id: \.id) { character in
-                                            Button(action: {}) {
-                                                VStack(alignment: .center, spacing: 0.0) {
-                                                    KFImage(URL(string: character.image)!)
-                                                        .resizable()
-                                                        .scaledToFill()
-                                                        .frame(
-                                                            width: geometry.size.width * 0.25,
-                                                            height: geometry.size.height * 0.15
-                                                        )
-                                                        .clipShape(Circle())
-                                                    
-                                                    Text(character.name)
-                                                        .lineLimit(nil)
-                                                        .multilineTextAlignment(.center)
-                                                        .fixedSize(horizontal: false, vertical: true)
-                                                        .frame(
-                                                            width: geometry.size.width * 0.25,
-                                                            height: geometry.size.height * 0.05,
-                                                            alignment: .top
-                                                        )
-                                                        .font(.system(size: 16))
-                                                    
-                                                }
-                                            }
+                                            CharacterCard(character: character, size: geometry.size)
                                         }
                                     }
                                     .padding(.horizontal, 12.0)
