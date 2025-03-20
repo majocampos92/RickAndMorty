@@ -15,7 +15,9 @@ struct TabBar: View {
     
     var body: some View {
         HStack(spacing: 50) {
-            Button(action: {}) {
+            Button(action: {
+                routes.popToRoot()
+            }) {
                 VStack {
                     Image(systemName: "house")
                         .resizable()
