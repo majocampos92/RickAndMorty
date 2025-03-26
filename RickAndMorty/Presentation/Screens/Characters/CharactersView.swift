@@ -38,6 +38,15 @@ struct CharactersView: View {
                             LazyVGrid(columns: gridLayout, spacing: 16) {
                                 ForEach(viewModel.characters, id: \.id) { character in
                                     CharacterCard(character: character, size: geometry.size)
+                                        .onAppear {
+                                            if let lastCharacter = viewModel.characters.last, character.id == lastCharacter.id {
+                                                viewModel.fetchCharacters(page: viewModel.currentPage)
+                                            }
+                                        }
+                                }
+                                
+                                if viewModel.isLoading {
+                                    ProgressView().frame(height: 50)
                                 }
                             }
                             .padding(.horizontal, 12.0)

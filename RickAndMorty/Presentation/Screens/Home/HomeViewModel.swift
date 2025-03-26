@@ -36,7 +36,7 @@ final class HomeViewModel: ObservableObject {
     
     // MARK: Fetch all Characters
     func fecthCharacters() {
-        charactersUseCase.getAllCharacters()
+        charactersUseCase.getAllCharacters(page: 1)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in
                 switch completion {

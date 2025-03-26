@@ -9,7 +9,7 @@ import Moya
 import Foundation
 
 enum RickAndMortyApi {
-    case getAllCharacters
+    case getAllCharacters(page: Int)
     case getAllLocations
     case getAllEpisodes
 }
@@ -48,8 +48,13 @@ extension RickAndMortyApi: TargetType {
 
     var task: Task {
         switch self {
-        case .getAllCharacters:
-            return .requestPlain
+        case .getAllCharacters(let page):
+            return .requestParameters(
+                parameters: [
+                    "page": page
+                ],
+                encoding: URLEncoding.default
+            )
         case .getAllLocations:
             return .requestPlain
         case .getAllEpisodes:

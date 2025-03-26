@@ -18,8 +18,8 @@ final class CharacterRepositoryImpl: CharacterRepository {
         self.apiService = apiService
     }
     
-    func getAllCharacters() -> AnyPublisher<[Character], Error> {
-        return apiService.requestPublisher(.getAllCharacters)
+    func getAllCharacters(page: Int) -> AnyPublisher<[Character], Error> {
+        return apiService.requestPublisher(.getAllCharacters(page: page))
             .tryMap { response -> [Character] in
                 let model = try JSONDecoder().decode(CharactersModel.self, from: response.data)
                 let results = model.results ?? []

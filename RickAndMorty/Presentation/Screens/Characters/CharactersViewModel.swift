@@ -13,6 +13,10 @@ final class CharactersViewModel: ObservableObject {
     @Published var characters: [CharacterDTO] = []
     @Published var dataLoaded = false
     @Published var error: Error?
+    @Published var isLoading = false
+    @Published var hasMorePages = true
+    
+    var currentPage = 1
 
     // MARK: Use cases
     private let charactersUseCase: CharacterUseCase
@@ -25,8 +29,10 @@ final class CharactersViewModel: ObservableObject {
     }
     
     // MARK: Fetch all Characters
-    func fecthCharacters() {
-        charactersUseCase.getAllCharacters()
+    func fetchCharacters(page: Int) {
+        guard !isLoading, hasMorePages else { return }
+        isLoading = true
+        charactersUseCase.getAllCharacters(page: page)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in
                 switch completion {
@@ -34,6 +40,7 @@ final class CharactersViewModel: ObservableObject {
                     self.error = failure
                     print("❌ Error in get all characters: \(failure)")
                 case .finished:
+                    self.isLoading = false
                     print("✅ Finish get all characters")
                 }
             }, receiveValue: { response in
@@ -47,13 +54,15 @@ final class CharactersViewModel: ObservableObject {
                         )
                     )
                 }
+                self.currentPage += 1
+                self.hasMorePages = !self.characters.isEmpty
             })
             .store(in: &cancellables)
     }
     
     func loadDataIfNeeded() {
         if !dataLoaded {
-            fecthCharacters()
+            fetchCharacters(page: 1)
             dataLoaded = true
         }
     }

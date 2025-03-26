@@ -12,7 +12,7 @@ import Foundation
 
 // MARK: - Protocols
 protocol CharacterUseCase {
-    func getAllCharacters() -> AnyPublisher<[Character], Error>
+    func getAllCharacters(page: Int) -> AnyPublisher<[Character], Error>
 }
 
 struct CharactersUseCaseImpl: CharacterUseCase {
@@ -22,7 +22,7 @@ struct CharactersUseCaseImpl: CharacterUseCase {
         self.repository = repository
     }
     
-    func getAllCharacters() -> AnyPublisher<[Character], Error> {
-        return repository.getAllCharacters()
+    func getAllCharacters(page: Int) -> AnyPublisher<[Character], Error> {
+        return repository.getAllCharacters(page: page)
     }
 }
