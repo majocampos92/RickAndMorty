@@ -47,7 +47,7 @@ final class HomeViewModel: ObservableObject {
                     print("✅ Finish get all characters")
                 }
             }, receiveValue: { response in
-                response.prefix(5).forEach { item in
+                response.results?.prefix(5).forEach { item in
                     self.characters.append(
                         CharacterDTO(
                             id: item.id ?? 0,

@@ -17,6 +17,7 @@ final class CharactersViewModel: ObservableObject {
     @Published var hasMorePages = true
     
     var currentPage = 1
+    var countCharacters = 0
 
     // MARK: Use cases
     private let charactersUseCase: CharacterUseCase
@@ -44,7 +45,8 @@ final class CharactersViewModel: ObservableObject {
                     print("✅ Finish get all characters")
                 }
             }, receiveValue: { response in
-                response.forEach { item in
+                self.countCharacters = response.info?.count ?? 0
+                response.results?.forEach { item in
                     self.characters.append(
                         CharacterDTO(
                             id: item.id ?? 0,
