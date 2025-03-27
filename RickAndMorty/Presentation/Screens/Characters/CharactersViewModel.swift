@@ -15,6 +15,7 @@ final class CharactersViewModel: ObservableObject {
     @Published var error: Error?
     @Published var isLoading = false
     @Published var hasMorePages = true
+    @Published var isSortedAZ = false
     
     var currentPage = 1
     var countCharacters = 0
@@ -60,6 +61,20 @@ final class CharactersViewModel: ObservableObject {
                 self.hasMorePages = !self.characters.isEmpty
             })
             .store(in: &cancellables)
+    }
+    
+    // MARK: Function to sort characters from A-Z
+    func sortCharactersAZ() {
+        characters.sort { $0.name.localizedCaseInsensitiveCompare($1.name) == .orderedAscending }
+    }
+
+    func toggleSorting() {
+        isSortedAZ.toggle()
+        if isSortedAZ {
+            sortCharactersAZ()
+        } else {
+            characters.sort { $0.id < $1.id }
+        }
     }
     
     func loadDataIfNeeded() {
