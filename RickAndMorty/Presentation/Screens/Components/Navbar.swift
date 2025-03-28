@@ -60,29 +60,59 @@ struct ListNavbar: View {
     var title: String
     let navigation: () -> Void
     
+    @State var isSearchVisible: Bool = false
+    @State private var searchText: String = ""
+    
     var body: some View {
-        VStack {
+        VStack(spacing: 8.0) {
             HStack {
                 Button(action: {
                     navigation()
                 }) {
                     Image(systemName: "chevron.left")
-                        .foregroundColor(Color("deep_navy"))
                 }
                 
                 Spacer()
                 
-                Text("\(title)")
-                    .foregroundColor(Color("deep_navy"))
-                
-                Spacer()
+                Button(action: {
+                    isSearchVisible.toggle()
+                }) {
+                    
+                    Image(systemName: "magnifyingglass")
+                }
+                   
+                Button(action: {}) {
+                    Image(systemName: "line.3.horizontal.decrease")
+                }
             }
+            
+            if isSearchVisible {
+                TextField("Search", text: $searchText)
+                    .padding(10)
+                    .background(.gray.opacity(0.1))
+                    .cornerRadius(35)
+                    .transition(.move(edge: .trailing)) // TODO: improve the animation
+                    .overlay(
+                        HStack {
+                            Spacer()
+                            if !searchText.isEmpty {
+                                Button(action: {
+                                    searchText = ""
+                                }) {
+                                    Image(systemName: "xmark.circle.fill")
+                                        .foregroundColor(.gray)
+                                }
+                                .padding(.trailing, 8)
+                                .font(.system(size: 14))
+                            }
+                        }
+                    )
+            }
+
         }
-        .padding()
-        .frame(
-            width: size.width,
-            height: size.height * 0.06
-        )
+        .padding(.horizontal)
+        .font(.system(size: 16))
+        .foregroundColor(Color("deep_navy"))
         .background(.white)
     }
 }
