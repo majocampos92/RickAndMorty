@@ -12,7 +12,6 @@ struct CharactersView: View {
     @StateObject var viewModel: CharactersViewModel = .make()
     @Binding var routes: [Route<Screen>]
     @Environment(\.dismiss) var dismiss
-    
     @State private var columns: Int = 3
     
     var gridLayout: [GridItem] {
@@ -21,18 +20,14 @@ struct CharactersView: View {
     
     var body: some View {
         GeometryReader { geometry in
-            VStack {
+            VStack(spacing: 16.0) {
                 NavbarSelector(type: .list, size: geometry.size, title: "Characters") {
                     dismiss()
                 }
                 ZStack(alignment: .bottom) {
                     VStack {
-                        Picker("Columns", selection: $columns) {
-                            Text("2 per row").tag(2)
-                            Text("3 per row").tag(3)
-                        }
-                        .pickerStyle(SegmentedPickerStyle())
-                        .padding()
+                        // MARK: Tools to sort
+                        ListToolbar(columns: $columns, sort: viewModel.toggleSorting, count: viewModel.countCharacters)
                         
                         ScrollView(.vertical, showsIndicators: false) {
                             LazyVGrid(columns: gridLayout, spacing: 16) {
@@ -52,12 +47,12 @@ struct CharactersView: View {
                             .padding(.horizontal, 12.0)
                         }
                     }
-                    
                     // MARK: TAB BAR
                     TabBar(routes: $routes, size: geometry.size)
                 }
             }
         }
+        .background(.white)
         .navigationBarBackButtonHidden(true)
         .onAppear {
             viewModel.loadDataIfNeeded()
