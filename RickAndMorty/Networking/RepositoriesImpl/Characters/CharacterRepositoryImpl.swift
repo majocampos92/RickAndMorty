@@ -24,4 +24,13 @@ final class CharacterRepositoryImpl: CharacterRepository {
             }
             .eraseToAnyPublisher()
     }
+    
+    func getCharacterDetail(id: Int) -> AnyPublisher<DetailCharacterModel, Error> {
+        return apiService.requestPublisher(.getCharacter(id: id))
+            .tryMap { reponse -> DetailCharacterModel in
+                return try JSONDecoder().decode(DetailCharacterModel.self, from: reponse.data)
+                
+            }
+            .eraseToAnyPublisher()
+    }
 }

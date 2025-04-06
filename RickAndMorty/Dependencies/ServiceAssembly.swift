@@ -30,13 +30,18 @@ public struct ServiceAssembly: Assembly {
         }
         
         // MARK: Use cases
-        container.register(CharacterUseCase.self) { resolver in
-            CharactersUseCaseImpl(repository: resolver.resolve(CharacterRepository.self)!)
+        container.register(GetAllCharactersUseCase.self) { resolver in
+            GetAllCharactersUseCaseImpl(repository: resolver.resolve(CharacterRepository.self)!)
+        }
+        
+        container.register(GetCharacterDetailUseCase.self) { resolver in
+            GetCharacterDetailUseCaseImpl(repository: resolver.resolve(CharacterRepository.self)!)
         }
         
         container.register(LocationUseCase.self) { resolver in
             LocationUseCaseImpl(repository: resolver.resolve(LocationRepository.self)!)
         }
+        
         container.register(EpisodeUseCase.self) { resolver in
             EpisodeUseCaseImpl(repository: resolver.resolve(EpisodeRepository.self)!)
         }

@@ -12,6 +12,7 @@ enum RickAndMortyApi {
     case getAllCharacters(page: Int)
     case getAllLocations
     case getAllEpisodes
+    case getCharacter(id: Int)
 }
 
 // MARK: Extensions
@@ -32,6 +33,8 @@ extension RickAndMortyApi: TargetType {
             return Endpoints.getLocations
         case .getAllEpisodes:
             return Endpoints.getAllEpisodes
+        case .getCharacter(id: let id):
+            return "\(Endpoints.getCharacter)\(id)"
         }
     }
     
@@ -42,6 +45,8 @@ extension RickAndMortyApi: TargetType {
         case .getAllLocations:
             return .get
         case .getAllEpisodes:
+            return .get
+        case .getCharacter:
             return .get
         }
     }
@@ -58,6 +63,8 @@ extension RickAndMortyApi: TargetType {
         case .getAllLocations:
             return .requestPlain
         case .getAllEpisodes:
+            return .requestPlain
+        case .getCharacter:
             return .requestPlain
         }
     }

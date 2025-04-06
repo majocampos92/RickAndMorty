@@ -9,4 +9,5 @@ import Combine
 
 protocol CharacterRepository {
     func getAllCharacters(page: Int) -> AnyPublisher<CharactersModel, Error>
+    func getCharacterDetail(id: Int) -> AnyPublisher<CharacterDetailModel, Error>
 }
