@@ -1,5 +1,5 @@
 //
-//  MockCharacterUseCase.swift
+//  MockUseCases.swift
 //  RickAndMorty
 //
 //  Created by Maria Campos on 27/3/25.
@@ -10,7 +10,7 @@ import Combine
 @testable import RickAndMorty
 
 // MARK: Characters
-final class MockCharacterUseCase: CharacterUseCase {
+final class MockGetAllCharactersUseCase: GetAllCharactersUseCase {
     var result: AnyPublisher<CharactersModel, Error> = Just(CharactersModel(info: nil, results: []))
         .setFailureType(to: Error.self)
         .eraseToAnyPublisher()

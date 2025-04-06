@@ -21,7 +21,7 @@ struct LocationUseCaseImpl: LocationUseCase {
         self.repository = repository
     }
     
-    func getAllLocations() -> AnyPublisher<[Location], any Error> {
+    func getAllLocations() -> AnyPublisher<[Location], Error> {
         return repository.getAllLocations()
     }
 }

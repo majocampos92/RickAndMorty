@@ -17,7 +17,7 @@ final class HomeViewModel: ObservableObject {
     @Published var error: Error?
 
     // MARK: Use cases
-    private let charactersUseCase: CharacterUseCase
+    private let getCharactersUseCase: GetAllCharactersUseCase
     private let locationsUseCase: LocationUseCase
     private let episodesUseCase: EpisodeUseCase
     
@@ -25,18 +25,18 @@ final class HomeViewModel: ObservableObject {
 
     // MARK: - Initialization
     init(
-        charactersUseCase: CharacterUseCase,
+        getCharactersUseCase: GetAllCharactersUseCase,
         locationUseCase: LocationUseCase,
         episodeUseCase: EpisodeUseCase
     ) {
-        self.charactersUseCase = charactersUseCase
+        self.getCharactersUseCase = getCharactersUseCase
         self.locationsUseCase = locationUseCase
         self.episodesUseCase = episodeUseCase
     }
     
     // MARK: Fetch all Characters
     func fecthCharacters() {
-        charactersUseCase.getAllCharacters(page: 1)
+        getCharactersUseCase.getAllCharacters(page: 1)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in
                 switch completion {
@@ -132,7 +132,7 @@ final class HomeViewModel: ObservableObject {
 extension HomeViewModel {
     static func make() -> HomeViewModel {
         HomeViewModel(
-            charactersUseCase: Injector.resolve(CharacterUseCase.self),
+            getCharactersUseCase: Injector.resolve(GetAllCharactersUseCase.self),
             locationUseCase: Injector.resolve(LocationUseCase.self),
             episodeUseCase: Injector.resolve(EpisodeUseCase.self)
         )

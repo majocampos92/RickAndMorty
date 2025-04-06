@@ -21,20 +21,20 @@ final class CharactersViewModel: ObservableObject {
     var countCharacters = 0
 
     // MARK: Use cases
-    private let charactersUseCase: CharacterUseCase
+    private let getAllCharactersUseCase: GetAllCharactersUseCase
     
     private var cancellables = Set<AnyCancellable>()
 
     // MARK: - Initialization
-    init(charactersUseCase: CharacterUseCase) {
-        self.charactersUseCase = charactersUseCase
+    init(getAllCharactersUseCase: GetAllCharactersUseCase) {
+        self.getAllCharactersUseCase = getAllCharactersUseCase
     }
     
     // MARK: Fetch all Characters
     func fetchCharacters(page: Int) {
         guard !isLoading, hasMorePages else { return }
         isLoading = true
-        charactersUseCase.getAllCharacters(page: page)
+        getAllCharactersUseCase.getAllCharacters(page: page)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in
                 switch completion {
@@ -88,6 +88,6 @@ final class CharactersViewModel: ObservableObject {
 // MARK: - Extensions
 extension CharactersViewModel {
     static func make() -> CharactersViewModel {
-        CharactersViewModel(charactersUseCase: Injector.resolve(CharacterUseCase.self))
+        CharactersViewModel(getAllCharactersUseCase: Injector.resolve(GetAllCharactersUseCase.self))
     }
 }

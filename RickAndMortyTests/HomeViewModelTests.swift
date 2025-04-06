@@ -11,19 +11,19 @@ import Foundation
 
 final class HomeViewModelTests: XCTestCase {
     var viewModel: HomeViewModel!
-    var mockCharacterUseCase: MockCharacterUseCase!
+    var mockGetAllCharacterUseCase: MockGetAllCharactersUseCase!
     var mockLocationUseCase: MockLocationUseCase!
     var mockEpisodeUseCase: MockEpisodeUseCase!
     var cancellables: Set<AnyCancellable> = []
     
     override func setUp() {
         super.setUp()
-        mockCharacterUseCase = MockCharacterUseCase()
+        mockGetAllCharacterUseCase = MockGetAllCharactersUseCase()
         mockLocationUseCase = MockLocationUseCase()
         mockEpisodeUseCase = MockEpisodeUseCase()
         
         viewModel = HomeViewModel(
-            charactersUseCase: mockCharacterUseCase,
+            getCharactersUseCase: mockGetAllCharacterUseCase,
             locationUseCase: mockLocationUseCase,
             episodeUseCase: mockEpisodeUseCase
         )
@@ -31,7 +31,7 @@ final class HomeViewModelTests: XCTestCase {
     
     override func tearDown() {
         viewModel = nil
-        mockCharacterUseCase = nil
+        mockGetAllCharacterUseCase = nil
         mockLocationUseCase = nil
         mockEpisodeUseCase = nil
         cancellables.removeAll()
@@ -75,7 +75,7 @@ final class HomeViewModelTests: XCTestCase {
         ]
         
         let response = CharactersModel(info: nil, results: expectedCharacters)
-        mockCharacterUseCase.result = Just(response)
+        mockGetAllCharacterUseCase.result = Just(response)
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
         
@@ -104,7 +104,7 @@ final class HomeViewModelTests: XCTestCase {
     func testFetchCharactersFailure() {
         // Given
         let expectedError = NSError(domain: "TestError", code: 1, userInfo: nil)
-        mockCharacterUseCase.result = Fail(error: expectedError)
+        mockGetAllCharacterUseCase.result = Fail(error: expectedError)
             .eraseToAnyPublisher()
         
         let expectation = XCTestExpectation(description: "Fetch characters fails")

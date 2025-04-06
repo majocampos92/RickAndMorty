@@ -21,7 +21,7 @@ struct EpisodeUseCaseImpl: EpisodeUseCase {
         self.repository = repository
     }
     
-    func getAllEpisodes() -> AnyPublisher<[Episode], any Error> {
+    func getAllEpisodes() -> AnyPublisher<[Episode], Error> {
         return repository.getAllEpisodes()
     }
 }

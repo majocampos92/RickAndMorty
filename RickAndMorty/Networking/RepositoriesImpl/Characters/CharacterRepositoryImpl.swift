@@ -11,7 +11,6 @@ import CombineMoya
 import Foundation
 
 final class CharacterRepositoryImpl: CharacterRepository {
-    
     private let apiService: MoyaProvider<RickAndMortyApi>
     
     init(apiService: MoyaProvider<RickAndMortyApi>) {
