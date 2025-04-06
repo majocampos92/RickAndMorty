@@ -9,14 +9,15 @@ import SwiftUI
 
 struct CharacterDetailView: View {
     @StateObject var viewModel: CharacterDetailViewModel = .make()
+    let id: Int
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text("\(viewModel.detailCharacter.name)")
             .onAppear {
-                viewModel.getCharacter(id: 1)
+                viewModel.getCharacter(id: id)
             }
     }
 }
 
 #Preview {
-    CharacterDetailView()
+    CharacterDetailView(id: 0)
 }

@@ -9,4 +9,5 @@ import Foundation
 
 enum Screen: Hashable {
     case characters
+    case characterDetail(id: Int)
 }

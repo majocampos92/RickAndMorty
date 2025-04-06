@@ -36,7 +36,7 @@ struct HomeView: View {
                                 ScrollView(.horizontal, showsIndicators: false) {
                                     HStack(alignment: .top, spacing: 16.0) {
                                         ForEach(viewModel.characters, id: \.id) { character in
-                                            CharacterCard(character: character, size: geometry.size)
+                                            CharacterCard(routes: $routes, character: character, size: geometry.size)
                                         }
                                     }
                                     .padding(.horizontal, 12.0)

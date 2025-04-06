@@ -32,7 +32,6 @@ final class CharacterDetailViewModel: ObservableObject {
                     print("✅ Finish get character")
                 }
             }, receiveValue: { response in
-                print(response)
                 self.detailCharacter = CharacterDTO(
                     id: response.id,
                     name: response.name,

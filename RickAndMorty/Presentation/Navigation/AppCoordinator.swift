@@ -19,6 +19,8 @@ struct AppCoordinator: View {
                     switch screen {
                     case .characters:
                         CharactersView(routes: $routes)
+                    case .characterDetail(let id):
+                        CharacterDetailView(id: id)
                     }
                 }
         }

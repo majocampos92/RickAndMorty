@@ -32,7 +32,7 @@ struct CharactersView: View {
                         ScrollView(.vertical, showsIndicators: false) {
                             LazyVGrid(columns: gridLayout, spacing: 16) {
                                 ForEach(viewModel.characters, id: \.id) { character in
-                                    CharacterCard(character: character, size: geometry.size)
+                                    CharacterCard(routes: $routes, character: character, size: geometry.size)
                                         .onAppear {
                                             if let lastCharacter = viewModel.characters.last, character.id == lastCharacter.id {
                                                 viewModel.fetchCharacters(page: viewModel.currentPage)

@@ -8,13 +8,18 @@
 import SwiftUI
 import Foundation
 import Kingfisher
+import FlowStacks
 
 struct CharacterCard: View {
+    @Binding var routes: [Route<Screen>]
+    
     let character: CharacterDTO
     let size: CGSize
     
     var body: some View {
-        Button(action: {}) {
+        Button(action: {
+            routes.append(.push(.characterDetail(id: character.id)))
+        }) {
             VStack(alignment: .center, spacing: 0.0) {
                 KFImage(URL(string: character.image)!)
                     .resizable()
