@@ -37,4 +37,19 @@ class EpisodeRepositoryImpl: EpisodeRepository {
             }
             .eraseToAnyPublisher()
     }
+    
+    func getMultipleEpisodes(ids: String) -> AnyPublisher<[MultipleEpisodesModel], any Error> {
+        apiService.requestPublisher(.getMultipleEpisodes(ids: ids))
+            .tryMap { response -> [MultipleEpisodesModel] in
+                let decoder = JSONDecoder()
+                /// API returns a single episode eg.:  {...}
+                if let single = try? decoder.decode(MultipleEpisodesModel.self, from: response.data) {
+                    return [single]
+                } else {
+                    /// API returns a multiple episodes eg.: [{...}, {...}]
+                    return try decoder.decode([MultipleEpisodesModel].self, from: response.data)
+                }
+            }
+            .eraseToAnyPublisher()
+    }
 }

@@ -45,5 +45,9 @@ public struct ServiceAssembly: Assembly {
         container.register(EpisodeUseCase.self) { resolver in
             EpisodeUseCaseImpl(repository: resolver.resolve(EpisodeRepository.self)!)
         }
+        
+        container.register(GetMultipleEpisodesUseCase.self) { resolver in
+            GetMultipleEpisodesUseCaseImpl(repository: resolver.resolve(EpisodeRepository.self)!)
+        }
     }
 }

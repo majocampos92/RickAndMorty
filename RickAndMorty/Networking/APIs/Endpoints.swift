@@ -12,4 +12,5 @@ enum Endpoints {
     static let getLocations = "/location"
     static let getAllEpisodes = "/episode"
     static let getCharacter = "/character/"
+    static let getMultipleEpisodes = "/episode/"
 }

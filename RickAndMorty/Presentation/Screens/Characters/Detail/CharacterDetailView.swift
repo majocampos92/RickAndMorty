@@ -28,6 +28,18 @@ struct CharacterDetailView: View {
                         Text("\(viewModel.characterDetail.gender)")
                         Text("\(viewModel.characterDetail.origin)")
                         Text("\(viewModel.characterDetail.location)")
+                        
+                        VStack(alignment: .leading, spacing: 8.0) {
+                            Text("Episodes")
+                                .bold()
+                            
+                            ForEach(viewModel.episodes, id: \.id) { item in
+                                HStack(spacing: 8.0) {
+                                    Text("\(item.name)")
+                                    Text("\(item.episode)")
+                                }
+                            }
+                        }
                     }
                     .padding()
                 }

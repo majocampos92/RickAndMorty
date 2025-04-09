@@ -10,4 +10,5 @@ import Combine
 
 protocol EpisodeRepository {
     func getAllEpisodes() -> AnyPublisher<[Episode], Error>
+    func getMultipleEpisodes(ids: String) -> AnyPublisher<[MultipleEpisodesModel], Error>
 }
