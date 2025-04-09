@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 final class CharacterDetailViewModel: ObservableObject {
-    @Published var detailCharacter: CharacterDTO = CharacterDTO(id: 0, name: "", species: "", image: "")
+    @Published var characterDetail: CharacterDetailDTO = CharacterDetailDTO.placeholder
     @Published var error: Error?
     
     private let getCharacterDetailUseCase: GetCharacterDetailUseCase
@@ -32,11 +32,15 @@ final class CharacterDetailViewModel: ObservableObject {
                     print("✅ Finish get character")
                 }
             }, receiveValue: { response in
-                self.detailCharacter = CharacterDTO(
+                self.characterDetail = CharacterDetailDTO(
                     id: response.id,
                     name: response.name,
-                    species: response.species,
-                    image: response.image
+                    status: response.status,
+                    specie: response.species,
+                    gender: response.gender,
+                    image: response.image,
+                    origin: response.origin.name,
+                    location: response.location.name
                 )
             })
             .store(in: &cancellables)

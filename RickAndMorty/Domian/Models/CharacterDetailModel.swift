@@ -15,15 +15,15 @@ struct CharacterDetailModel: Codable {
     let species: String
     let type: String
     let gender: String
-    let origin, location: DetailCharacterLocation
+    let origin, location: DetailItem
     let image: String
     let episode: [String]
     let url: String
     let created: String
 }
 
-// MARK: - Location
-struct DetailCharacterLocation: Codable {
+// MARK: - DetailItem
+struct DetailItem: Codable {
     let name: String
     let url: String
 }
