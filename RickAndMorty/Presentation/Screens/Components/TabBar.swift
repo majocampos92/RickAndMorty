@@ -31,7 +31,9 @@ struct TabBar: View {
             }
             
             Button(action: {
-                routes.append(.push(.characters))
+                if routes.last?.screen != .characters {
+                    routes.append(.push(.characters))
+                }
             }) {
                 VStack {
                     Image("person_icon")
